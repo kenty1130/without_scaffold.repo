@@ -1,0 +1,33 @@
+<h1>
+  <%= @my_thread.title %>
+</h1>
+<h2>
+  Comments
+</h2>
+<% if @comments.any? %>
+  <ul>
+    <% @comments.each do |c| %>
+      <li>
+        <%= c.body %>
+        <%#= link_to '[Edit]', edit_my_thread_comment_path(comment), class: "command" %>
+        <%#= button_to '[Delete]', my_thread_comment_path(@my_thread, comment), method: :delete, class: 'command' %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+<div class="border">
+  <h2>
+    Create Comment
+  </h2>
+<%= form_with(model:[@my_thread, @comment], url: my_thread_comments_path(@my_thread)) do |f| %>
+  <p>
+    <%= f.text_field :body, placeholder: 'Enter body' %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+</div>
+<div class="footer">
+  <%= link_to 'Back', root_path, class: "footer-menu" %>
+</div>

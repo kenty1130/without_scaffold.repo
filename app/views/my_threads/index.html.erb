@@ -1,0 +1,13 @@
+<h1>
+  My Threads
+  <%= link_to 'Add', new_my_thread_path, class: "header-menu" %>
+</h1>
+<ul>
+  <% @my_threads.each do |my_thread| %>
+    <li>
+      <%= link_to my_thread.title, my_thread_path(my_thread) %>
+      <%= link_to '[Edit]', edit_my_thread_path(my_thread), class: "command" %>
+      <%= button_to "[Delete]", my_thread_path(my_thread), method: :delete, class: "command" %>
+    </li>
+  <% end %>
+</ul>
