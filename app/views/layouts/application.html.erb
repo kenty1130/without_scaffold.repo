@@ -13,6 +13,7 @@
   <body>
     <div class="container">
     <%= yield %>
+    <%= button_to 'Logout', destroy_user_session_path, method: :delete %>
     </div>
   </body>
 </html>

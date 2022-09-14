@@ -5,7 +5,7 @@ class MyThreadsController < ApplicationController
 
   def show
     @my_thread = MyThread.find(params[:id])
-    @comments = @my_thread.comments
+    @comments = @my_thread.comments.order(created_at: 'desc')
     @comment = @my_thread.comments.build
   end
 
