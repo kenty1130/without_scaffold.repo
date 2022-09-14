@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :my_threads do
-    resources :comments
+    resources :comments, controller: 'my_threads/comments'
   end
 
   root "my_threads#index"
