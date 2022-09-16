@@ -11,10 +11,12 @@ class MyThreadsController < ApplicationController
 
   def new
     @my_thread = MyThread.new
+    # @user_id = @my_thread.user_id
   end
 
   def create
     @my_thread = MyThread.new(my_thread_params)
+    @my_thread.user_id = current_user.id if current_user
     if @my_thread.save
       redirect_to my_threads_path
     else
@@ -28,6 +30,7 @@ class MyThreadsController < ApplicationController
 
   def update
     @my_thread = MyThread.find(params[:id])
+    @my_thread.user_id = current_user.id if current_user
     if @my_thread.update(my_thread_params)
       redirect_to my_threads_path
     else

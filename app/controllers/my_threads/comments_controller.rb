@@ -2,7 +2,7 @@ class MyThreads::CommentsController < ApplicationController
   def create
     @my_thread = MyThread.find(params[:my_thread_id])
     @comment = @my_thread.comments.new(comment_params)
-    # binding.pry
+    @comment.user_id = current_user.id if current_user
     if @comment.save
       redirect_to my_thread_path(@my_thread)
     else
@@ -18,6 +18,7 @@ class MyThreads::CommentsController < ApplicationController
   def update
     @my_thread = MyThread.find(params[:id])
     @comment = @my_thread.comments.find(params[:id])
+    @comment.user_id = current_user.id if current_user
     if @comment.update(comment_params)
       redirect_to my_thread_path(@my_thread)
     else

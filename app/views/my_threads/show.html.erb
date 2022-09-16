@@ -9,8 +9,10 @@
     <% @comments.each do |c| %>
       <li>
         <%= c.body %>
-        <%= link_to '[Edit]', edit_my_thread_comment_path(@my_thread, c.id), class: "command" %>
-        <%= button_to '[Delete]', my_thread_comment_path(@my_thread, c), method: :delete, class: 'command' %>
+        <% if current_user.id ==  c.user_id %>
+          <%= link_to '[Edit]', edit_my_thread_comment_path(@my_thread, c.id), class: "command" %>
+          <%= button_to '[Delete]', my_thread_comment_path(@my_thread, c), method: :delete, class: 'command' %>
+        <% end %>
       </li>
     <% end %>
   </ul>
